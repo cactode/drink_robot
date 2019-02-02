@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/css/bulma.min.css') }}">
+    <title>re-rack</title>
+  </head>
+  <body>
+  <section class="section">
+     <div class="container" id="app">
+      <div class="navbar"><navbar></navbar></div>
+      <div class="content">
+        <router-view></router-view>
+      </div>
+    </div>
+  </section>
+
+  {% include 'navbar.html' %}
+
+  <script type="text/javascript" src="{{ url_for('static', filename='lib/js/vue.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='lib/js/buefy.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='lib/js/axios.js') }}"></script>
+
+  </body>
+</html>
