@@ -51,7 +51,7 @@ def create_app(test_config=None):
 
     # initialize physical valves
     from drink_robot.controllers import init_pins
-    init_pins(app)
+    # init_pins(app)
 
     # start initializing app components
     # set up blueprints for each page
