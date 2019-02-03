@@ -1,10 +1,24 @@
 <script type="text/x-template" id="navbar-template">
 <nav class="navbar" role="navigation">
     <div class="navbar-brand">
-        <h1 class="title">re-rack</h1>
+        <h1 v-if="!this.$root.$data.settings" class="title">re-rack</h1>
+        <h1 v-if="this.$root.$data.settings" class="title">settings</h1>
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
     </div>
-    <div class="navbar-menu is-active">
-        <i class='fa fa-cogs'></i>
-    </div>
+    <div class="navbar-menu" id="navMenu">
+        <div class='navbar-end'>
+          <p class='navbar-item' v-on:click="toggleSettings" href=''>
+            Settings
+          </p>
+          <a class='navbar-item' href=''>
+            Help
+          </a>
+        </div>
+      </div>
+    </nav>
 </nav>
 </script> 

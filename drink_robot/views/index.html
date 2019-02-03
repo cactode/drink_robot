@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/css/buefy.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>re-rack</title>
   </head>
   <body>
   <section class="section">
      <div class="container" id="app">
+       {% raw %}
+       <v-navbar></v-navbar>
+       {% endraw %}
        <!-- Unknown content -->
     </div>
   </section>
@@ -19,6 +23,9 @@
   <script type="text/javascript" src="{{ url_for('static', filename='lib/js/vue.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='lib/js/buefy.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='lib/js/axios.js') }}"></script>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 
   </body>
 </html>
