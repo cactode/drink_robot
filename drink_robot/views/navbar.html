@@ -1,8 +1,9 @@
+{% raw %}
 <script type="text/x-template" id="navbar-template">
 <nav class="navbar" role="navigation">
     <div class="navbar-brand">
-        <h1 v-if="!this.$root.$data.settings" class="title">re-rack</h1>
-        <h1 v-if="this.$root.$data.settings" class="title">settings</h1>
+        <a v-if="!sharedState.settings" href='/' class="title">re-rack</a>
+        <h1 v-if="sharedState.settings" href='/' class="title">settings</h1>
         <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -11,14 +12,12 @@
     </div>
     <div class="navbar-menu" id="navMenu">
         <div class='navbar-end'>
-          <p class='navbar-item' v-on:click="toggleSettings" href=''>
-            Settings
-          </p>
-          <a class='navbar-item' href=''>
-            Help
-          </a>
+          <a class="navbar-item unselectable" v-on:click="toggleSettings" v-if="sharedState.settings">back to recipes</a>
+          <a class="navbar-item unselectable" v-on:click="toggleSettings" v-if="!sharedState.settings">settings</a>
+          <a class='navbar-item' href='/'>help</a>
         </div>
       </div>
     </nav>
 </nav>
 </script> 
+{% endraw %}

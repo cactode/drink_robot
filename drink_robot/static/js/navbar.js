@@ -1,9 +1,14 @@
 Vue.component('v-navbar', {
     template: '#navbar-template',
+    data: function () {
+      return {
+        sharedState: store.state
+      }
+    },
     methods: {
         toggleSettings: function () {
             console.log("Clicked!");
-            this.$root.$data.settings = !this.$root.$data.settings;
+            this.sharedState.settings ? store.turnSettingsOff(): store.turnSettingsOn()
         }
     }
 })
