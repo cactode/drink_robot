@@ -10,8 +10,10 @@ def bottle(location):
 		return jsonify(ingredient)
 
 	if request.method == 'POST':
-		ingredient = request.form.get('ingredient', None)
+		print(request.get_json())
+		ingredient = request.get_json().get('ingredient', None)
 		if ingredient:
 			current_app.config['MAPPING'][location] = ingredient
+			return jsonify(True)
 		else:
 			abort(409) 
