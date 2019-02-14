@@ -31,8 +31,8 @@ def create_app(test_config=None):
             6: 12,
             7: 6
         },
-        MAPPING={0:"a", 1:"b", 2:"c"},
-        TAU=1
+        MAPPING={},
+        TAU=0.04 # seconds per milliliter
     )
 
     if test_config is None:

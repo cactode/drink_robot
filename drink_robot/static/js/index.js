@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if there are any navbar burgers
     if ($navbarBurgers.length > 0) {
-    
+     
         // Add a click event on each of them
         $navbarBurgers.forEach( el => {
         el.addEventListener('click', () => {
@@ -37,7 +37,7 @@ var app = new Vue({
             5: null,
             6: null,
             7: null,
-        },
+        },   
         recipes: [],
         settings: false,
         editingBottle: false,

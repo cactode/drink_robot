@@ -20,11 +20,11 @@ def pour_recipe(name):
     return jsonify(missing)
 
 
-@bp.route('/pour/ingredient/<ingredient>/<int:amount>', methods=['GET'])
+@bp.route('/pour/ingredient/<ingredient>/<amount>', methods=['GET'])
 def pour_ingredient(ingredient, amount):
     if ingredient not in current_app.config['MAPPING'].values():
         abort(404)
-    pour(ingredient, amount)
+    pour(ingredient, float(amount))
     return jsonify(None)
 
 
@@ -43,10 +43,11 @@ def pour(ingredient, amount):
                 if j == ingredient][0]
     pin = current_app.config['PINS'][location]
     pi.write(pin, 0)
-    Timer(amount * current_app.config['TAU'], stop_pour,
+    time_to_pour = amount * current_app.config['TAU']
+    Timer(time_to_pour, stop_pour,
           kwargs={'pi': pi, 'pin': pin}).start()
 
 
 def stop_pour(pi, pin):
 	pi.write(pin, 1)
-	pi.stop()
+	pi.stop() # gotta close it
