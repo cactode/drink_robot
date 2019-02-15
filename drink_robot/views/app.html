@@ -9,13 +9,32 @@
     <title>re-rack</title>
   </head>
   <body>
+    <div class='section' id='app'>
+      <div class='container'>
+        
+        <navbar></navbar>
+        <br>
+        <help></help>
+        <recipe-pourer></recipe-pourer>
+        <hr>
+        <bottle-pourer></bottle-pourer>
+      </div>
+    </div>
+
+    {% include 'help.html' %}
+    {% include 'navbar.html' %}
+    {% include 'bottlepourer.html' %}
+    {% include 'recipepourer.html' %}
 
     <script type="text/javascript" src="{{ url_for('static', filename='lib/js/vue.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='lib/js/buefy.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='lib/js/axios.js') }}"></script>
-
     <script type="text/javascript" src="{{ url_for('static', filename='js/store.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/help.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/recipepourer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bottlepourer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 
   </body>
 </html>

@@ -1,0 +1,24 @@
+{% raw %}
+<script type="text/x-template" id="recipe-pourer-template">
+<div>
+    <div v-for="recipe in shared.state.recipes">
+        <recipe-module :name="recipe.a"></recipe-module>
+    </div>
+</div>
+</script>
+
+<script type="text/x-template" id="recipe-module-template">
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            {{ name }}
+        </p>
+    </header>
+    <div class='card-content'>
+        <button class="button" v-if="shared.state.settings" v-on:click="removeRecipe()">Remove</button>
+        <button class="button" v-if="shared.state.settings" v-on:click="deleteRecipe()">Delete</button>
+        <button class="button" v-on:click="pourRecipe()">Pour</button>
+    </div>
+</div>
+</script>
+{% endraw %}

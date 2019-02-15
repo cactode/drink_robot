@@ -11,7 +11,7 @@ var store = {
             6: null,
             7: null,
         },
-        recipes: [],
+        recipes: [{a:1}],
         settings: false,
         help: false
     }

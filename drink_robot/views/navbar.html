@@ -2,19 +2,14 @@
 <script type="text/x-template" id="navbar-template">
 <nav class="navbar" role="navigation">
     <div class="navbar-brand">
-        <a v-if="!sharedState.settings" href='/' class="title">re-rack</a>
-        <h1 v-if="sharedState.settings" href='/' class="title">settings</h1>
-        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
+        <a href='/' class="title">re-rack</a>
     </div>
-    <div class="navbar-menu" id="navMenu">
+    <div class="navbar-menu is-active" id="navMenu">
         <div class='navbar-end'>
-          <a class="navbar-item unselectable" v-on:click="toggleSettings" v-if="sharedState.settings">back to recipes</a>
-          <a class="navbar-item unselectable" v-on:click="toggleSettings" v-if="!sharedState.settings">settings</a>
-          <a class='navbar-item' href='/'>help</a>
+          <a class="navbar-item unselectable" v-on:click="shared.state.settings = true" v-if="!shared.state.settings">settings</a>
+          <a class="navbar-item unselectable" v-on:click="shared.state.settings = false" v-if="shared.state.settings">back to recipes</a>
+          <a class="navbar-item unselectable" v-on:click="shared.state.help = true" v-if="!shared.state.help">help</a>
+          <a class="navbar-item unselectable" v-on:click="shared.state.help = false" v-if="shared.state.help">ok enough</a>
         </div>
       </div>
     </nav>
