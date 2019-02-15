@@ -43,6 +43,7 @@ def estop():
 def pour(ingredient, amount):
     if current_app.config['DEBUG']:
         print("Attempted to pour " + ingredient + " for " + str(amount))
+        return
     pi = pigpio.pi()
     location = [i for i, j in current_app.config['MAPPING'].items()
                 if j == ingredient][0]

@@ -19,7 +19,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         # a default secret that should be overridden by instance config
         SECRET_KEY='dev',
-        DEBUG='true',
+        DEBUG=True,
         SQLALCHEMY_DATABASE_URI='sqlite:///'+os.path.join(app.instance_path, 'drink_robot.sqlite'),
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         PINS={
