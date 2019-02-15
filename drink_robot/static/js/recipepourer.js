@@ -12,15 +12,17 @@ Vue.component('recipe-module', {
             axios.get('/pour/recipe/' + this.name)
         }, 
         removeRecipe: function() {
-            // fix
+            return
         },
         deleteRecipe: function() {
-            removeRecipe()
-            axios.delete('/recipe/', {
-                data: {
-                    name: this.name
-                }
-            })
+            this.removeRecipe()
+            const formData = new FormData()
+            formData.append('name', this.name)
+            axios({
+                method: 'delete',
+                url: '/recipe',
+                data: formData
+              });
         }
     },
     template: "#recipe-module-template"

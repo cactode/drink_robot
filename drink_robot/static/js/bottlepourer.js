@@ -10,10 +10,15 @@ Vue.component('bottle-module', {
     },
     methods: {
         editBottle: function() {
-            return
+            if (!this.bottle_ingredient) {
+                return
+            }
+            axios.post('/bottle/' + this.bottle_index, {
+                ingredient: this.bottle_ingredient.toLowerCase()
+            })
         },
         pourBottle: function() {
-            axios.get('/pour/ingredient/' + ingredient + '/50')
+            axios.get('/pour/ingredient/' + this.bottle_ingredient + '/50')
         }
     },
     template: '#bottle-module-template'

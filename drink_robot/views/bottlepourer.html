@@ -22,8 +22,8 @@
         </p>
     </header>
     <div class='card-content'>
-        <button class="button" v-if="shared.state.settings" v-on:click="editBottle()">Edit</button>
-        <button class="button" v-bind:disabled="!bottle_ingredient" v-on:click="pourBottle()">Pour</button>
+        <input v-if="shared.state.settings" v-model='bottle_ingredient' @blur='editBottle()' class='input is-primary' type='text' placeholder='Ingredient'>
+        <button v-if="!shared.state.settings" class="button" v-bind:disabled="!bottle_ingredient" v-on:click="pourBottle()">Pour</button>
     </div>
 </div>
 </script>

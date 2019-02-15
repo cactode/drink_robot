@@ -33,6 +33,7 @@ def recipe():
         name = request.form.get('name', None)
         if not name:
         	abort(400)
+        print(name)
         recipe = Recipe.query.filter_by(name=name).first()
         if not recipe:
         	abort(404)

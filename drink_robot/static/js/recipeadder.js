@@ -6,7 +6,7 @@ Vue.component('recipe-adder', {
             searched: '',
             selected: null,
             addingName: '',
-            addingIngredients: [],
+            addingIngredients: '',
             addingNew: false
         }
     },
@@ -18,40 +18,50 @@ Vue.component('recipe-adder', {
                     .toString()
                     .toLowerCase()
                     .indexOf(this.searched.toLowerCase()) >= 0
-            })
+            }).map(option => {
+                return option.name 
+            });
         }
     },
     methods: {
         addNewRecipe() {
+            const formData = new FormData()
+            formData.append('name', this.addingName)
+            formData.append('contents', this.addingIngredients)
             axios({
                 method: 'post',
                 url: '/recipe',
-                data: {
-                  name: this.name,
-                  contents: {
-                      vodka: 100
-                  }
-                }
+                data: formData
               });
             this.updateRecipeCache()
             this.addingName = ''
-            this.addingIngredients = []
+            this.addingIngredients = ''
             this.addingNew = false
         },
         updateRecipeCache() {
             axios.get('/recipe')
-                .then(function(response) {
-                    data = response.data
-                })
+                .then(this.pushRecipeCache)
+        },
+        pushRecipeCache(response) {
+            this.data.length = 0
+            for (datum of response.data) {
+                console.log(datum)
+                this.data.push(datum)
+            }
         },
         addRecipe() {
             if (this.selected) {
-                this.store.state.recipes.push({
-                    name: this.selected,
-                    contents: "Rubbish"
-                })
+                this.shared.state.recipes.push(
+                    {
+                        name: this.selected,
+                        contents: "Garbage"
+                    }
+                )
             }
         }
+    },
+    created: function() {
+        this.updateRecipeCache()
     },
     template: '#recipe-adder-template'
 })
