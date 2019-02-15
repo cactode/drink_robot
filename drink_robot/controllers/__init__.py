@@ -5,6 +5,8 @@ from drink_robot.controllers.pour import bp as pour
 import pigpio
 
 def init_pins(app):
+    if app.config['DEBUG']:
+        return
     gpio = pigpio.pi()
     for pin in app.config['PINS'].values():
         gpio.set_mode(pin, pigpio.OUTPUT)
