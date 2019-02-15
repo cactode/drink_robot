@@ -1,0 +1,63 @@
+{% raw %}
+<script type="text/x-template" id="recipe-adder-template">
+<div>
+<b-field class='has-addons'>
+    <b-autocomplete
+        v-model="searched"
+        ref="autocomplete"
+        :data="filteredDataArray"
+        placeholder="e.g. White Russian"
+        @select="option => selected = option">
+        <template slot="header">
+            <a @click="addingNew = true">
+                <span> Create new... </span>
+            </a> 
+        </template>
+        <template slot="empty">
+            No results for {{searched}}
+        </template>
+    </b-autocomplete>
+    <div class='control'>
+            <button class='button' @click='addRecipe()'>
+                Add Recipe
+            </button>
+        </div>
+</b-field>
+<b-modal :active.sync='addingNew' has-modal-card>
+    <div class='modal-card' style='width: auto'>
+        <header class='modal-card-head'>
+            <p class='modal-card-title'>
+                Add New Recipe
+            </p>
+        </header>
+        <section class='modal-card-body'>
+            <div class='field'>
+                <div class='control'>
+                    <input v-model='addingName' class='input is-primary' type='text' placeholder='Recipe Name'>
+                </div>
+            </div>
+        </section>
+        <footer class='modal-card-foot'>
+            <button class='button' type='button' @click="addingNew = false">Cancel</button>
+            <button class='button is-primary' @click="addNewRecipe()">Submit</button>
+        </footer>
+    </div>
+</b-modal>
+</div>
+</script>
+
+<script type="text/x-template" id="recipe-module-template">
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            {{ name }}
+        </p>
+    </header>
+    <div class='card-content'>
+        <button class="button" v-if="shared.state.settings" v-on:click="removeRecipe()">Remove</button>
+        <button class="button" v-if="shared.state.settings" v-on:click="deleteRecipe()">Delete</button>
+        <button class="button" v-on:click="pourRecipe()">Pour</button>
+    </div>
+</div>
+</script>
+{% endraw %}

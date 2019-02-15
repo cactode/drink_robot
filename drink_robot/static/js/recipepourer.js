@@ -9,7 +9,7 @@ Vue.component('recipe-module', {
     },
     methods: {
         pourRecipe: function() {
-            axios.get('/pour/recipe/' + name)
+            axios.get('/pour/recipe/' + this.name)
         }, 
         removeRecipe: function() {
             // fix
@@ -18,7 +18,7 @@ Vue.component('recipe-module', {
             removeRecipe()
             axios.delete('/recipe/', {
                 data: {
-                    name: name
+                    name: this.name
                 }
             })
         }

@@ -12,7 +12,7 @@ def recipe():
         if not name:
             return jsonify([r.to_dict() for r in Recipe.query.all()])
         else:
-            return jsonify(recipe.query.filter_by(name=name).first())
+            return jsonify(recipe.query.filter_by(name=name).first().to_dict())
 
     if request.method == 'POST':
         name = request.form.get('name', None)

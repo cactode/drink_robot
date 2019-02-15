@@ -5,7 +5,9 @@ Vue.component('bottle-module', {
             bottle_ingredient: null
         }
     },
-    props: ['bottle_index'],
+    props: {
+        bottle_index: Number
+    },
     methods: {
         editBottle: function() {
             return
