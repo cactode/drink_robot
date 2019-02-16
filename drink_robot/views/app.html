@@ -15,8 +15,20 @@
         <navbar></navbar>
         <br>
         <help></help>
+        <p>
+        </p>
         <recipe-adder></recipe-adder>
         <hr>
+        {% raw %}
+        <article v-if='shared.state.message' class="message">
+            <div class="message-header">
+              <p>Extra Stuff Needed</p>
+            </div>
+            <div class="message-body">
+              You'll also need: {{shared.state.message}}
+            </div>
+        </article>
+        {% endraw %}
         <recipe-pourer></recipe-pourer>
         <hr>
         <bottle-pourer></bottle-pourer>

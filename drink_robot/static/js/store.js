@@ -13,6 +13,7 @@ var store = {
         },
         recipes: [],
         settings: false,
-        help: false
+        help: false,
+        message: ""
     }
 }

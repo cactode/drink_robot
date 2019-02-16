@@ -23,6 +23,8 @@ Vue.component('recipe-module', {
                                       + data[datum]
                                       + "mL, "
                     }
+                    console.log("You also need: " + parent.extras)
+                    parent.shared.state.message = parent.extras
                 })
         },
         removeRecipe: function() {
