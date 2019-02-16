@@ -2,7 +2,7 @@
 <script type="text/x-template" id="recipe-pourer-template">
 <div>
     <div v-for="recipe in shared.state.recipes">
-        <recipe-module :name="recipe.name"></recipe-module>
+        <recipe-module :name="recipe.name" :contents="recipe.contents"></recipe-module>
         <br>
     </div>
 </div>
