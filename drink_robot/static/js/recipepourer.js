@@ -1,7 +1,8 @@
 Vue.component('recipe-module', {
     data: function() {
         return {
-            shared: store
+            shared: store,
+            extras: ''
         }
     },
     props: {
@@ -10,12 +11,23 @@ Vue.component('recipe-module', {
     },
     methods: {
         pourRecipe: function() {
+            let parent = this
+            this.extras = ''
             axios.get('/pour/recipe/' + this.name)
+                .then(response => {
+                    let data = response.data
+                    for (datum of Object.keys(data)) {
+                        parent.extras = parent.extras 
+                                      + datum 
+                                      + ": "
+                                      + data[datum]
+                                      + "mL, "
+                    }
+                })
         },
         removeRecipe: function() {
             let parent = this
             this.shared.state.recipes = this.shared.state.recipes.filter(function (item) {
-                console.log(parent.name + " and then " + item.name)
                 return parent.name != item.name
             })
         },

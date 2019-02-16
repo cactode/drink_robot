@@ -16,6 +16,9 @@
         </p>
     </header>
     <div class='card-content'>
+        <p v-if='extras'>
+            {{ "You'll also need the following:" + extras }}
+        </p>
         <button class="button" v-if="shared.state.settings" v-on:click="removeRecipe()">Remove</button>
         <button class="button" v-if="shared.state.settings" v-on:click="deleteRecipe()">Delete</button>
         <button class="button" v-on:click="pourRecipe()">Pour</button>
