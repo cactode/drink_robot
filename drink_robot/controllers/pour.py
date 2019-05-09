@@ -31,7 +31,7 @@ def pour_ingredient(ingredient, amount):
 @bp.route('/pour/estop', methods=['GET'])
 def estop():
     if current_app.config['DEBUG']:
-        print("ESTOP triggered!")
+        current_app.logger.info("ESTOP triggered!")
         return
     pi = pigpio.pi()
     for pin in current_app.config['PINS'].values():
@@ -42,7 +42,7 @@ def estop():
 
 def pour(ingredient, amount):
     if current_app.config['DEBUG']:
-        print("Attempted to pour " + ingredient + " for " + str(amount))
+        current_app.logger.info("Attempted to pour " + ingredient + " for " + str(amount))
         return
     pi = pigpio.pi()
     location = [i for i, j in current_app.config['MAPPING'].items()
