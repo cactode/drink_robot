@@ -15,15 +15,14 @@ def recipe():
             return jsonify(recipe.query.filter_by(name=name).first().to_dict())
 
     if request.method == 'POST':
-        name = request.form.get('name', None)
-        contents = request.form.get('contents', None)
+        name = request.json.get('name', None)
+        contents = request.json.get('contents', None)
         if not name or not contents:
             abort(400)
 
         if Recipe.query.filter_by(name=name).all():
             abort(409)
 
-        contents = json.loads(contents)
         new_recipe = Recipe(name=name, contents=contents)
         db.session.add(new_recipe)
         db.session.commit()
@@ -40,3 +39,18 @@ def recipe():
         db.session.delete(recipe)
         db.session.commit()
         return name
+
+@bp.route('/ingredients', methods=['GET'])
+def agg_ings():
+    recipes = Recipe.query.all()
+
+    agg_list = []
+
+    for r in recipes:
+        for k, v in r.contents.items():
+            if k not in agg_list:
+                agg_list.append(k)
+
+    return jsonify({
+        'agg': agg_list,
+    }) 

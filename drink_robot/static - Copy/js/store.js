@@ -12,7 +12,8 @@ var store = {
             7: null,
         },
         recipes: [],
-        connected: true,
-        ingredients: []
+        settings: false,
+        help: false,
+        message: ""
     }
 }

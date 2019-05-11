@@ -3,6 +3,12 @@ from flask import Blueprint, request, jsonify, current_app, abort
 
 bp = Blueprint('bottle', __name__)
 
+@bp.route('/bottle/', methods=['GET'])
+def all_bottle():
+	if request.method == 'GET':
+		return jsonify(current_app.config['MAPPING'])
+
+
 @bp.route('/bottle/<int:location>', methods=['GET', 'POST'])
 def bottle(location):
 	if request.method == 'GET':
@@ -10,10 +16,6 @@ def bottle(location):
 		return jsonify(ingredient)
 
 	if request.method == 'POST':
-		print(request.get_json())
 		ingredient = request.get_json().get('ingredient', None)
-		if ingredient:
-			current_app.config['MAPPING'][location] = ingredient
-			return jsonify(True)
-		else:
-			abort(409) 
+		current_app.config['MAPPING'][location] = ingredient
+		return jsonify(True)

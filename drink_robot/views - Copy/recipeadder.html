@@ -1,24 +1,7 @@
 {% raw %}
 <script type="text/x-template" id="recipe-adder-template">
-<div class="adder">
-
-    Name: <input type="text" v-model="currentName">
-
-    <div v-for="keyval in keyvals">
-        <input type="text" placeholder="Ingredient" v-model="keyval.ing">
-        <input type="text" placeholder="mL" v-model="keyval.ml">
-        <button>-</button>
-    </div>
-
-    <br><br>
-
-    <button @click="addIng">+</button>
-    <button @click="nuke">Nuke</button>
-
-    <br><br>
-    <button @click="addStuff">Add!!</button>
-
-<!-- <b-field class='has-addons'>
+<div>
+<b-field class='has-addons'>
     <b-autocomplete
         v-model="searched"
         ref="autocomplete"
@@ -64,11 +47,11 @@
             <button class='button is-primary' @click="addNewRecipe()">Submit</button>
         </footer>
     </div>
-</b-modal> -->
+</b-modal>
 </div>
 </script>
 
-<!-- <script type="text/x-template" id="recipe-module-template">
+<script type="text/x-template" id="recipe-module-template">
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">
@@ -81,5 +64,5 @@
         <button class="button" v-on:click="pourRecipe()">Pour</button>
     </div>
 </div>
-</script> -->
+</script>
 {% endraw %}

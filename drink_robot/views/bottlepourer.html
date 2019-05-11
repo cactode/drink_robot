@@ -1,14 +1,9 @@
 {% raw %}
 <script type="text/x-template" id="bottle-pourer-template">
 <div>
-    <div class="columns">
-        <div class="column" v-for="i in [0,1,2,3]">
-            <bottle-module  :bottle_index="i"></bottle-module>
-        </div>
-    </div>
-    <div class="columns">
-        <div class="column" v-for="i in [4, 5, 6, 7]">
-            <bottle-module  :bottle_index="i"></bottle-module>
+    <div class="columns is-multiline is-mobile">
+        <div class="column " v-for="i in [0,1,2,3,4,5,6,7]">
+            <bottle-module :bottle_index="i"></bottle-module>
         </div>
     </div>
 </div>
@@ -22,8 +17,31 @@
         </p>
     </header>
     <div class='card-content'>
-        <input v-if="shared.state.settings" v-model='shared.state.bottles[bottle_index]' @blur='editBottle()' class='input is-primary' type='text' placeholder='Ingredient'>
-        <button v-if="!shared.state.settings" class="button" v-bind:disabled="!shared.state.bottles[bottle_index]" v-on:click="pourBottle()">Pour</button>
+        <!-- <div class='field'>
+            <div class='control'>
+                <input v-if="editing" v-model='editedIngredient' @blur='editBottle()' class='input is-primary' type='text' placeholder='Ingredient'>
+            </div>
+        </div> -->
+        <b-field v-if="editing">
+            <b-autocomplete
+                rounded
+                v-model="editedIngredient"
+                :data="search"
+                @input="refreshSearch"
+                placeholder="Ingredient"
+                >
+                <template slot="empty">No results found</template>
+            </b-autocomplete>
+        </b-field>
+        <div class='field'>
+            <button v-if="!editing" class="button" v-bind:disabled="!shared.state.bottles[bottle_index]" v-on:click="pourBottle()">Pour</button>
+        </div>
+        <div class='field'>
+            <button class="button" v-on:click="toggleEdit()">{{editing ? "Set" : "Edit"}}</button>
+        </div>
+        <div class='field'>
+            <button class="button" v-if="shared.state.bottles[bottle_index]" v-on:click="markAsEmpty()">Mark as Empty</button>
+        </div>
     </div>
 </div>
 </script>

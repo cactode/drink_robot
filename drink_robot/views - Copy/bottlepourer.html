@@ -1,0 +1,30 @@
+{% raw %}
+<script type="text/x-template" id="bottle-pourer-template">
+<div>
+    <div class="columns">
+        <div class="column" v-for="i in [0,1,2,3]">
+            <bottle-module  :bottle_index="i"></bottle-module>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column" v-for="i in [4, 5, 6, 7]">
+            <bottle-module  :bottle_index="i"></bottle-module>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/x-template" id="bottle-module-template">
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            Bottle {{bottle_index}} : {{shared.state.bottles[bottle_index] ? shared.state.bottles[bottle_index] : "Empty"}}
+        </p>
+    </header>
+    <div class='card-content'>
+        <input v-if="shared.state.settings" v-model='shared.state.bottles[bottle_index]' @blur='editBottle()' class='input is-primary' type='text' placeholder='Ingredient'>
+        <button v-if="!shared.state.settings" class="button" v-bind:disabled="!shared.state.bottles[bottle_index]" v-on:click="pourBottle()">Pour</button>
+    </div>
+</div>
+</script>
+{% endraw %}

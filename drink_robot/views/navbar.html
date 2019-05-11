@@ -1,18 +1,35 @@
 {% raw %}
 <script type="text/x-template" id="navbar-template">
-<nav class="navbar" role="navigation">
-    <div class="navbar-brand">
-        <a href='/' class="title">re-rack</a>
-    </div>
-    <div class="navbar-menu is-active" id="navMenu">
-        <div class='navbar-end'>
-          <a class="navbar-item unselectable" v-on:click="shared.state.settings = true" v-if="!shared.state.settings">settings</a>
-          <a class="navbar-item unselectable" v-on:click="shared.state.settings = false" v-if="shared.state.settings">save and return</a>
-          <a class="navbar-item unselectable" v-on:click="shared.state.help = true" v-if="!shared.state.help">help</a>
-          <a class="navbar-item unselectable" v-on:click="shared.state.help = false" v-if="shared.state.help">ok enough</a>
-        </div>
+<div class="wrapper">
+  <nav class="navbar" role="navigation">
+      <div class="navbar-brand">
+          <a href='/' class="title">re-rack</a>
       </div>
-    </nav>
-</nav>
+      <div class="navbar-menu is-active" id="navMenu">
+          <div class='navbar-end'>
+            <a class="navbar-item unselectable" v-on:click="help = true" v-if="!help">help</a>
+            <a class="navbar-item unselectable" v-on:click="help = false" v-if="help">ok enough</a>
+          </div>
+        </div>
+      </nav>
+  </nav>
+  <div class='content' v-if='help'>
+      <p>
+        This is re-rack, the shitty Putz bartending solution. 
+      </p>
+      <p>
+        First, make sure that your bottles are properly set. Click "edit" on a bottle to assign it an ingredient. If a bottle is ever empty, hit "empty" to mark it as such.
+      </p>
+      <p>
+        Then make sure that your recipes are all entered. Enter new recipes at the bottom of the page. Units are in mL. Get woke, nerd. If you want to get rid of a recipe, hit "remove".
+      </p>
+      <p>
+        To pour a single ingredient, click "shot". To pour a recipe, hit "pour". Any ingredients that aren't loaded in a bottle will be listed below the recipe.
+      </p>
+      <p>
+        If the page loses its link to re-rack, refresh the browser. If that doesn't fix it, restart re-rack. If that doesn't fix it, you're boned.
+      </p>
+  </div>
+</div>
 </script> 
 {% endraw %}

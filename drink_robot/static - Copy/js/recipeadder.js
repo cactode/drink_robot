@@ -7,11 +7,7 @@ Vue.component('recipe-adder', {
             selected: null,
             addingName: '',
             addingIngredients: '',
-            addingNew: false,
-            currentName: '',
-            keyvals: [
-                {ing: '', ml: ''}
-            ],
+            addingNew: false
         }
     },
     computed: {
@@ -62,33 +58,7 @@ Vue.component('recipe-adder', {
                     }
                 )
             }
-        },
-        addIng() {
-            this.keyvals.push({
-                ing: '',
-                ml: '',
-            });
-        },
-        nuke() {
-            this.keyvals = [
-                {ing: '', ml: ''}
-            ];
-        },
-        addStuff() {
-            const recipe = {};
-
-            for (let r of this.keyvals) {
-                recipe[r.ing] = parseInt(r.ml);
-            }
-
-            axios.post('/recipe', data={
-                name: this.currentName,
-                contents: recipe,
-            }).then((r) => {
-                // TODO error handle
-
-            });
-        },
+        }
     },
     created: function() {
         this.updateRecipeCache()

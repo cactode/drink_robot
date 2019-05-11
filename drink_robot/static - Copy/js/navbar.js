@@ -1,8 +1,7 @@
 Vue.component('navbar', {
     data: function() {
         return {
-            shared: store, 
-            help: false
+            shared: store
         }
     },
     template: '#navbar-template'

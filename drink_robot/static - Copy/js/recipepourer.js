@@ -2,8 +2,7 @@ Vue.component('recipe-module', {
     data: function() {
         return {
             shared: store,
-            extras: '',
-            showingExtras: false
+            extras: ''
         }
     },
     props: {
@@ -12,8 +11,8 @@ Vue.component('recipe-module', {
     },
     methods: {
         pourRecipe: function() {
-            this.extras = ''
             let parent = this
+            this.extras = ''
             axios.get('/pour/recipe/' + this.name)
                 .then(response => {
                     let data = response.data
@@ -24,15 +23,18 @@ Vue.component('recipe-module', {
                                       + data[datum]
                                       + "mL, "
                     }
-                    if (parent.extras) {
-                        parent.showingExtras = true
-                    }
+                    console.log("You also need: " + parent.extras)
+                    parent.shared.state.message = parent.extras
                 })
         },
-        deleteRecipe: function() {
+        removeRecipe: function() {
+            let parent = this
             this.shared.state.recipes = this.shared.state.recipes.filter(function (item) {
-                return this.name != item.name
+                return parent.name != item.name
             })
+        },
+        deleteRecipe: function() {
+            this.removeRecipe()
             const formData = new FormData()
             formData.append('name', this.name)
             axios({
@@ -50,6 +52,14 @@ Vue.component('recipe-pourer', {
         return {
             shared: store
         }
+    },
+    mounted: function() {
+        axios.get('/recipe')
+            .then( response => {
+                for (datum of response.data) {
+                    this.shared.state.recipes.push(datum)
+                }
+            })
     },
     template: "#recipe-pourer-template"
 })
