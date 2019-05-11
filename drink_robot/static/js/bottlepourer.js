@@ -42,7 +42,7 @@ Vue.component('bottle-module', {
         },
         refreshSearch() {
             axios.get('/ingredients').then((r) => {
-                this.search = r.data.agg.filter((l) => l.indexOf(this.editedIngredient) > -1);
+                this.search = r.data.agg.filter((l) => l.indexOf(this.editedIngredient.toLowerCase()) > -1);
             });
         },
     },
