@@ -1,8 +1,8 @@
 {% raw %}
 <script type="text/x-template" id="bottle-pourer-template">
 <div>
-    <div class="columns is-multiline is-mobile">
-        <div class="column " v-for="i in [0,1,2,3,4,5,6,7]">
+    <div class="columns is-multiline">
+        <div class="column is-one-quarter " v-for="i in [0,1,2,3,4,5,6,7]">
             <bottle-module :bottle_index="i"></bottle-module>
         </div>
     </div>
@@ -24,7 +24,6 @@
         </div> -->
         <b-field v-if="editing">
             <b-autocomplete
-                rounded
                 v-model="editedIngredient"
                 :data="search"
                 @input="refreshSearch"

@@ -1,7 +1,7 @@
 {% raw %}
 <script type="text/x-template" id="recipe-pourer-template">
-<div class="columns is-multiline is-mobile">
-    <div class="column" v-for="recipe in shared.state.recipes">
+<div class="columns is-multiline">
+    <div class="column is-one-quarter" v-for="recipe in shared.state.recipes">
         <recipe-module :name="recipe.name" :contents="recipe.contents"></recipe-module>
     </div>
 </div>
