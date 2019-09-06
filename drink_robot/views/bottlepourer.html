@@ -1,7 +1,7 @@
 {% raw %}
 <script type="text/x-template" id="bottle-pourer-template">
 <div>
-    <div class="columns is-multiline">
+    <div class="columns is-multiline is-gapless">
         <div class="column is-one-quarter " v-for="i in [0,1,2,3,4,5,6,7]">
             <bottle-module :bottle_index="i"></bottle-module>
         </div>
@@ -34,11 +34,7 @@
         </b-field>
         <div class='field'>
             <button v-if="!editing" class="button" v-bind:disabled="!shared.state.bottles[bottle_index]" v-on:click="pourBottle()">Pour</button>
-        </div>
-        <div class='field'>
             <button class="button" v-on:click="toggleEdit()">{{editing ? "Set" : "Edit"}}</button>
-        </div>
-        <div class='field'>
             <button class="button" v-if="shared.state.bottles[bottle_index]" v-on:click="markAsEmpty()">Mark as Empty</button>
         </div>
     </div>

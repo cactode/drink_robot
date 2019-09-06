@@ -1,6 +1,6 @@
 {% raw %}
 <script type="text/x-template" id="recipe-pourer-template">
-<div class="columns is-multiline">
+<div class="columns is-multiline is-gapless">
     <div class="column is-one-quarter" v-for="recipe in shared.state.recipes">
         <recipe-module :name="recipe.name" :contents="recipe.contents"></recipe-module>
     </div>
@@ -18,9 +18,12 @@
     <div class='card-content'>
         <div class='field'>
         <button class="button" v-on:click="pourRecipe()">Pour</button>
+        <button class="button" v-on:click="deleting=true">Remove</button>
         </div>
-        <div class='field'>
-        <button class="button" v-on:click="deleteRecipe()">Remove</button>
+        <div v-if="deleting" class="field">
+            <label class='label'>For real?</label>
+            <button class='button' v-on:click="deleting=false">Go Back</button>
+            <button class='button' v-on:click="deleteRecipe()">Yes</button>
         </div>
         <b-notification
         auto-close type="is-danger"
